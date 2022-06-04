@@ -12,11 +12,8 @@ import { Router } from '@angular/router';
 export class SignInComponent implements OnInit {
   public error: any;
   public loginForm = new FormGroup({
-    email: new FormControl('vivianemma98@gmail.com', [
-      Validators.required,
-      Validators.email,
-    ]),
-    password: new FormControl('1234567@', [
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [
       Validators.required,
       Validators.maxLength(8),
     ]),

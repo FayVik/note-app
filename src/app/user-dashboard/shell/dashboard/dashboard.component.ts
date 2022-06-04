@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ServiceService, AllNote } from 'src/app/service.service';
+import { ServiceService, AllNote, UserResponse } from 'src/app/service.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,6 +13,12 @@ export class DashboardComponent implements OnInit {
 
   displayedColumns = ['Title', 'View', 'Update', 'Delete'];
   public dataSource = new MatTableDataSource<AllNote>();
+  public isAuth: boolean = false;
+
+  public logout() {
+    window.localStorage.removeItem('auth.user');
+    this.router.navigate(['']);
+  }
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -46,5 +52,9 @@ export class DashboardComponent implements OnInit {
         console.log(error);
       }
     );
+    const userString =
+      window.localStorage.getItem('auth.user') || '{"id": -1 }';
+    const user = JSON.parse(userString) as UserResponse;
+    this.isAuth = user.id !== -1;
   }
 }
