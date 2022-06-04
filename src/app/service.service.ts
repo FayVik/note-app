@@ -8,6 +8,13 @@ export interface loginData {
   password: string;
 }
 
+export interface AllNote {
+  content: string;
+  created: string;
+  id: number;
+  title: string;
+}
+
 export interface signupData extends loginData {
   first_name: string;
   last_name: string;
@@ -31,10 +38,6 @@ export interface UserAPIResponse {
 export interface NewNote {
   title: string;
   content: string;
-}
-
-export interface Identify {
-  id: number;
 }
 
 @Injectable({
@@ -149,9 +152,32 @@ export class ServiceService {
       );
   }
 
-  public getNote(requestData: Identify): Observable<any> {
+  public getNote(id: number): Observable<any> {
     return this.http
-      .get<any>(`https://note-xyz.herokuapp.com/api/v1/note/${requestData}`)
+      .get<any>(`https://note-xyz.herokuapp.com/api/v1/note/${id}`)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          let status = 500;
+          let data: object | string | undefined;
+          if (error.error instanceof Error) {
+            status = error.status;
+            data = { message: error.error.message };
+          } else if (error.error) {
+            status = error.error.status || 500;
+            data = error.error.message || '';
+          }
+          console.log({ error: { status, data } });
+          return throwError(() => ({
+            status,
+            data,
+          }));
+        })
+      );
+  }
+
+  public updateNote(id: number, requestData: NewNote): Observable<any> {
+    return this.http
+      .put<any>(`https://note-xyz.herokuapp.com/api/v1/note/${id}`, requestData)
       .pipe(
         catchError((error: HttpErrorResponse) => {
           let status = 500;
@@ -173,9 +199,9 @@ export class ServiceService {
       );
   }
 
-  public deleteNote(requestData: Identify): Observable<any> {
+  public deleteNote(id: number): Observable<any> {
     return this.http
-      .delete<any>(`https://note-xyz.herokuapp.com/api/v1/note/${requestData}`)
+      .delete<any>(`https://note-xyz.herokuapp.com/api/v1/note/${id}`)
       .pipe(
         catchError((error: HttpErrorResponse) => {
           let status = 500;

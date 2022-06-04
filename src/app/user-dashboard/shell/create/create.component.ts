@@ -25,7 +25,7 @@ export class CreateComponent implements OnInit {
 
     this.http.createNote(createForm).subscribe(
       (res) => {
-        console.log(res);
+        this.router.navigate(['/user-dashboard/dashboard']);
       },
       (error) => {
         console.log(error);

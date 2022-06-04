@@ -9,6 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./update.component.css'],
 })
 export class UpdateComponent implements OnInit {
+  public id = -1;
   public note = {
     title: '',
     content: '',
@@ -20,36 +21,38 @@ export class UpdateComponent implements OnInit {
   });
   constructor(
     private http: ServiceService,
-    private router: Router,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.getNote;
+    this.getNote();
   }
 
-  getNote = (): void => {
-    let noteId = this.activeRoute.snapshot.params['id'];
+  getNote(): void {
+    this.id = this.activeRoute.snapshot.params['id'];
 
-    this.http.getNote(noteId).subscribe(
+    this.http.getNote(this.id).subscribe(
       (res) => {
-        console.log(res);
-        this.note = res as NewNote;
+        this.note = res.data as NewNote;
         this.updateForm.patchValue(this.note);
       },
       (error) => {
         console.log(error);
       }
     );
-  };
+  }
 
   UpdateNote(value: any): void {
+    console.log(value);
     this.note.title = value.title;
     this.note.content = value.content;
 
-    this.http.createNote(this.note).subscribe(
+    console.log(this.note);
+
+    this.http.updateNote(this.id, this.note).subscribe(
       (res) => {
-        console.log(res);
+        this.router.navigate(['/user-dashboard/dashboard']);
       },
       (error) => {
         console.log(error);

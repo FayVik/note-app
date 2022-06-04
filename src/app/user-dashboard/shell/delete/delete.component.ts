@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NewNote, ServiceService, Identify } from 'src/app/service.service';
-import { ActivatedRoute } from '@angular/router';
+import { NewNote, ServiceService } from 'src/app/service.service';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 @Component({
@@ -14,12 +14,13 @@ export class DeleteComponent implements OnInit {
     content: '',
   } as NewNote;
 
-  public id?: Identify;
+  public id = -1;
 
   constructor(
     private http: ServiceService,
     private activeRoute: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -36,7 +37,6 @@ export class DeleteComponent implements OnInit {
 
     this.http.getNote(noteId).subscribe(
       (res) => {
-        console.log(res);
         this.note = res as NewNote;
       },
       (error) => {
@@ -46,11 +46,11 @@ export class DeleteComponent implements OnInit {
   };
 
   public deleteN = () => {
-    let id = this.id as Identify;
+    let id = this.id;
 
     this.http.deleteNote(id).subscribe(
       (res) => {
-        console.log(res);
+        this.router.navigate(['/user-dashboard/dashboard']);
       },
       (error) => {
         console.log(error);

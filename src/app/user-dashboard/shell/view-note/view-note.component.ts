@@ -33,7 +33,7 @@ export class ViewNoteComponent implements OnInit {
     this.http.getNote(noteId).subscribe(
       (res) => {
         console.log(res);
-        this.note = res as NewNote;
+        this.note = res.data as NewNote;
       },
       (error) => {
         console.log(error);

@@ -12,8 +12,11 @@ import { Router } from '@angular/router';
 export class SignInComponent implements OnInit {
   public error: any;
   public loginForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [
+    email: new FormControl('vivianemma98@gmail.com', [
+      Validators.required,
+      Validators.email,
+    ]),
+    password: new FormControl('1234567@', [
       Validators.required,
       Validators.maxLength(8),
     ]),
@@ -45,6 +48,10 @@ export class SignInComponent implements OnInit {
         (res) => {
           this.message = res[0].message;
           if (this.message === 'User Login Successful') {
+            window.localStorage.setItem(
+              'auth.user',
+              JSON.stringify(res[0].data)
+            );
             this.router.navigate(['/user-dashboard/dashboard']);
           }
         },
