@@ -37,7 +37,7 @@ export class DeleteComponent implements OnInit {
 
     this.http.getNote(noteId).subscribe(
       (res) => {
-        this.note = res as NewNote;
+        this.note = res.data as NewNote;
       },
       (error) => {
         console.log(error);

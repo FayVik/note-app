@@ -1,23 +1,30 @@
-<section fxLayout="row wrap" fxLayoutAlign="center center">
-  <mat-card fxFlex="500px" fxFlex.xs="100%">
-    <mat-card-title>Delete Note</mat-card-title>
-    <mat-card-content>
-      <div fxLayout="column wrap" fxLayoutGap="40px">
-        <div fxLayout="row wrap" fxFlex>
-          <div fxFlex><strong>Note Title:</strong></div>
-          <div fxFlex>{{ note?.title }}</div>
-        </div>
+<div class="container my-5">
+  <section fxLayout="row wrap" fxLayoutAlign="center center">
+    <mat-card fxFlex="500px" fxFlex.xs="100%">
+      <mat-card-title>View Note</mat-card-title>
+      <mat-card-content>
+        <div fxLayout="column wrap" fxLayoutGap="40px">
+          <div fxLayout="row wrap" fxFlex>
+            <div fxFlex><strong>Note Title:</strong></div>
+            <div fxFlex>{{ note?.title }}</div>
+          </div>
 
-        <div fxLayout="row wrap" fxFlex>
-          <div fxFlex><strong>Note of content:</strong></div>
-          <div fxFlex>{{ note?.content }}</div>
+          <div fxLayout="row wrap" fxFlex>
+            <div fxFlex><strong>Note of content:</strong></div>
+            <div fxFlex>{{ note?.content }}</div>
+          </div>
         </div>
-      </div>
-    </mat-card-content>
-    <mat-card-actions>
-      <button type="button" mat-raised-button color="warn" (click)="onCancel()">
-        Go back
-      </button>
-    </mat-card-actions>
-  </mat-card>
-</section>
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          type="button"
+          mat-raised-button
+          color="warn"
+          (click)="onCancel()"
+        >
+          Go back
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </section>
+</div>

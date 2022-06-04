@@ -44,9 +44,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.http.getAllNote().subscribe(
       (res) => {
-        console.log(res.data);
         this.dataSource.data = res.data as AllNote[];
-        console.log(this.dataSource.data);
       },
       (error) => {
         console.log(error);
