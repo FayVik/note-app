@@ -6,6 +6,7 @@ import { CreateComponent } from './shell/create/create.component';
 import { UpdateComponent } from './shell/update/update.component';
 import { DeleteComponent } from './shell/delete/delete.component';
 import { ViewNoteComponent } from './shell/view-note/view-note.component';
+import { AuthGuard } from '../services/auth.guard';
 
 const routes: Routes = [
   {
@@ -15,22 +16,27 @@ const routes: Routes = [
       {
         path: '',
         component: DashboardComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'create',
         component: CreateComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'update/:id',
         component: UpdateComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'view-note/:id',
         component: ViewNoteComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'delete/:id',
         component: DeleteComponent,
+        canActivate: [AuthGuard],
       },
     ],
   },

@@ -21,7 +21,7 @@ export interface signupData extends loginData {
 }
 
 export interface UserResponse {
-  id: 0;
+  id: number;
   email: string;
   first_name: string;
   last_name: string;
@@ -99,10 +99,6 @@ export class ServiceService {
         })
       );
   }
-
-  // public isAuthenticated(): boolean {
-  // return this.getToken() != null;
-  // }
 
   public createNote(requestData: NewNote): Observable<any> {
     return this.http
