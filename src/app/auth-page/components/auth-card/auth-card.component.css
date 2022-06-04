@@ -1,0 +1,22 @@
+main {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.492), rgba(0, 0, 0, 0.492)),
+    url("../../../../assets/image/note.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100%;
+  color: #ffffff;
+}
+img {
+  height: 100px;
+  width: 260px;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+a {
+  font-size: 20px;
+  font-weight: bolder;
+  text-decoration: none;
+  color: black;
+}

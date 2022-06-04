@@ -1,0 +1,26 @@
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+  <mat-card fxFlex="500px" fxFlex.xs="100%">
+    <mat-card-title>Delete Note</mat-card-title>
+    <mat-card-content>
+      <div fxLayout="column wrap" fxLayoutGap="40px">
+        <div fxLayout="row wrap" fxFlex>
+          <div fxFlex><strong>Note Title:</strong></div>
+          <div fxFlex>{{ note?.title }}</div>
+        </div>
+
+        <div fxLayout="row wrap" fxFlex>
+          <div fxFlex><strong>Note of content:</strong></div>
+          <div fxFlex>{{ note?.content }}</div>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="deleteN()">
+        Delete
+      </button>
+      <button type="button" mat-raised-button color="warn" (click)="onCancel()">
+        Cancel
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</section>

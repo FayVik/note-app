@@ -1,0 +1,15 @@
+main {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.229), rgba(0, 0, 0, 0.211)),
+    url("../../assets/image/jess-bailey-Bg3qkPDpopY-unsplash.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100%;
+  color: #ffffff;
+}
+.hero {
+  height: 80vh;
+  width: 100%;
+  color: black;
+}
