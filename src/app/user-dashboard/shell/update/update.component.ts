@@ -44,11 +44,8 @@ export class UpdateComponent implements OnInit {
   }
 
   UpdateNote(value: any): void {
-    console.log(value);
     this.note.title = value.title;
     this.note.content = value.content;
-
-    console.log(this.note);
 
     this.http.updateNote(this.id, this.note).subscribe(
       (res) => {
