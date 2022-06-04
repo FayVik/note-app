@@ -96,9 +96,38 @@ export class ServiceService {
         })
       );
   }
+
+  // public isAuthenticated(): boolean {
+  // return this.getToken() != null;
+  // }
+
   public createNote(requestData: NewNote): Observable<any> {
     return this.http
       .post<any>('https://note-xyz.herokuapp.com/api/v1/note/', requestData)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          let status = 500;
+          let data: object | string | undefined;
+          if (error.error instanceof Error) {
+            status = error.status;
+            data = { message: error.error.message };
+          } else if (error.error) {
+            status = error.error.status || 500;
+            data = error.error.message || '';
+          }
+
+          console.log({ error: { status, data } });
+          return throwError(() => ({
+            status,
+            data,
+          }));
+        })
+      );
+  }
+
+  public getAllNote(): Observable<any> {
+    return this.http
+      .get<any>(`https://note-xyz.herokuapp.com/api/v1/note/`)
       .pipe(
         catchError((error: HttpErrorResponse) => {
           let status = 500;

@@ -43,7 +43,16 @@ export class DashboardComponent implements OnInit {
     this.router.navigate([url]);
   };
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.http.getAllNote().subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 }
 
 export interface Element {
